@@ -1,0 +1,19 @@
+  <div class="row">
+    <% @recipes.each do |recipe| %>
+      <div class="item">
+        <div class="col-md-3 col-sm-4 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading text-center">
+              <a href= "<%= recipe.url %>" target="_blank">
+                <img src="<%= recipe.food_image_url %>" alt="" width="200" height="180" >
+              </a>
+            </div>
+            <div class="panel-body">
+              <p class="item-title"><%= recipe.title %></p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
