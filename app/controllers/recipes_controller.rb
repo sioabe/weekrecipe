@@ -1,14 +1,19 @@
 class RecipesController < ApplicationController
+  include CategoriesHelper
+  before_action :category_new 
+  
   def new
-    @recipes = []
-    @category_id = "30"
-    results = RakutenWebService::Recipe.ranking(@category_id)
-    results.each do|result|
-      recipe = Recipe.new(read(result))
-      @recipes << recipe
+    @recipes=[]
+    @categories.each_with_index do |category,i|
+      break if i==12  #全部表示させようとすると５０４gatewaytimeoutになる。
+      results = RakutenWebService::Recipe.ranking(category.rakuten_category_id)
+      #@category_id = category.id
+      results.each do|result|
+        recipe = Recipe.new(read(result))
+        @recipes << recipe
+      end
     end
   end
-end
 
 private
 
@@ -18,15 +23,15 @@ def read(result)
   url = result['recipeUrl']
   food_image_url =result['foodImageUrl']
   materials= result['recipeMaterial']
-  category_id = @category_id
+  #@category_id = category_id
   {
     rakuten_recipe_id: rakuten_recipe_id,
     title: title,
     url: url,
     food_image_url: food_image_url,
     materials: materials,
-    category_id: category_id
-    
+    #category_id: category_id,
   }
 end
-  
+
+end
