@@ -1,4 +1,5 @@
   <div class="row">
+    <%= render 'recipes/tab' %>
     <% @recipes.each_with_index do |recipe,i| %>
       <% if recipe.category_id == @recipes[i-1].category_id %>
       <% else %>

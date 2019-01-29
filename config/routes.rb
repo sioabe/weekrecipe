@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   
   get 'signup', to: 'users#new'
   resources :users, only: [:show, :new, :create]
-  resources :recipes, only: [:new]
-  resources :categories, only:[:new]
+  
+  resources :recipes, only: [:new] 
+  get'recipes/category', to:"recipes#category"
+  get'recipes/random', to:"recipes#random"
+  
+  #resources :categories, only:[:new]
 end

@@ -1,6 +1,5 @@
 module CategoriesHelper
-   #カテゴリーの取得
-   
+   #ランキング用。カテゴリ取得
   def category_new
     @categories = []
     results = RakutenWebService::Recipe.large_categories

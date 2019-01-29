@@ -1,6 +1,11 @@
 class RecipesController < ApplicationController
   include CategoriesHelper
   before_action :category_new 
+  def category
+  end
+  
+  def random
+  end
   
   def new
     @recipes=[]
