@@ -1,5 +1,9 @@
   <div class="row">
-    <% @recipes.each do |recipe| %>
+    <% @recipes.each_with_index do |recipe,i| %>
+      <% if recipe.category_id == @recipes[i-1].category_id %>
+      <% else %>
+        <h2><%= recipe.category_id %></h2>
+      <% end %>
       <div class="item">
         <div class="col-md-3 col-sm-4 col-xs-12">
           <div class="panel panel-default">
@@ -9,8 +13,8 @@
               </a>
             </div>
             <div class="panel-body">
+              <!--表示が崩れるため文字は１５文字までとする-->
               <p class="item-title"><%= truncate(recipe.title, length: 15) %></p>
-
             </div>
           </div>
         </div>
