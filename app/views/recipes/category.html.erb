@@ -1,2 +1,38 @@
- <%= render 'recipes/tab' %>
+<%= render 'recipes/tab' %>
     <h1>カテゴリ別レシピ</h1>
+<!--カテゴリ一覧　サイドバーに表示-->
+<% @categories.each_with_index do |category,i| %>
+ <% break if i==12 %>
+ <ul>
+   <li>
+     <%= category.rakuten_category_id %>◇<%= link_to category.name,
+     :action => "category", :category_id => category.rakuten_category_id %>
+   </li>
+ </ul>
+<% end %>
+
+<!--カテゴリ別レシピ表示部分-->
+
+
+<% @category_recipes.each do |recipe| %>
+<div class="item">
+  <div class="col-md-3 col-sm-4 col-xs-12">
+    <div class="panel panel-default">
+      <div class="panel-heading text-center">
+        <a href= "<%= recipe.url %>" target="_blank">
+          <div class="sample2">
+            <img src="<%= recipe.food_image_url %>" alt="" width="200" height="180" >
+            <div class="mask">
+		          <div class="caption">楽天レシピで<br>詳細を確認する</div>
+		        </div>
+          </div>
+        </a>
+      </div>
+      <div class="panel-body">
+      <!--表示が崩れるため文字は１５文字までとする-->
+        <p class="item-title"><%= truncate(recipe.title, length: 15) %></p>
+      </div>
+    </div>
+  </div>
+</div>
+<% end %>

@@ -18,8 +18,7 @@ module RecipesHelper
       end
     end
   end
-  
-  
+
   private
 
 def read(result)

@@ -4,6 +4,7 @@ class RecipesController < ApplicationController
   
   before_action :category_new 
   def category
+    @category_recipes = Recipe.where(category_id: params[:category_id]) 
   end
   
   def random
