@@ -1,12 +1,17 @@
 class RecipesController < ApplicationController
+  include RecipesHelper
   include CategoriesHelper
+  
   before_action :category_new 
   def category
+    save_category
   end
   
   def random
+    save_recipe
   end
   
+  #最新のカテゴリ別レシピランキングを取得
   def new
     @recipes=[]
     @categories.each_with_index do |category,i|
@@ -20,23 +25,5 @@ class RecipesController < ApplicationController
     end
   end
 
-private
-
-def read(result)
-  rakuten_recipe_id = result['recipeId']
-  title = result['recipeTitle']
-  url = result['recipeUrl']
-  food_image_url =result['foodImageUrl']
-  materials= result['recipeMaterial']
-  category_id = @category_id
-  {
-    rakuten_recipe_id: rakuten_recipe_id,
-    title: title,
-    url: url,
-    food_image_url: food_image_url,
-    materials: materials,
-    category_id: category_id,
-  }
-end
 
 end
