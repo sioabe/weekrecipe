@@ -1,2 +1,25 @@
 <%= render 'recipes/tab' %>
 <h1>ランダムレシピ</h1>
+<p>お忙しい方必見！</p>
+<p>楽天レシピの中からランダムに５レシピを抽出します。</p>
+<p>ついつい決まったものばかり食べてしまいがちですが、</p>
+<p>この機会に新しいレシピに挑戦してみてください！</p>
+<%= link_to '違うレシピを表示する', recipes_random_path, class: 'btn btn-success btn-lg' %>
+<p></p>
+<% @random_recipes.each do |random_recipe| %>
+  <div class="item">
+    <div class="col-md-3 col-sm-4 col-xs-12">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          <a href= "<%= random_recipe.url %>" target="_blank">
+            <img src="<%= random_recipe.food_image_url %>" alt="" width="200" height="180" >
+          </a>
+        </div>
+        <div class="panel-body">
+          <!--表示が崩れるため文字は１５文字までとする-->
+          <p class="item-title"><%= truncate(random_recipe.title, length: 15) %></p>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
