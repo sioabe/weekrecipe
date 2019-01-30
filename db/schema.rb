@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190128092837) do
+ActiveRecord::Schema.define(version: 20190130025418) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "rakuten_category_id"
@@ -18,6 +18,15 @@ ActiveRecord::Schema.define(version: 20190128092837) do
     t.string   "url"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+  end
+
+  create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "recipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_likes_on_recipe_id", using: :btree
+    t.index ["user_id"], name: "index_likes_on_user_id", using: :btree
   end
 
   create_table "recipes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -39,4 +48,6 @@ ActiveRecord::Schema.define(version: 20190128092837) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "likes", "recipes"
+  add_foreign_key "likes", "users"
 end

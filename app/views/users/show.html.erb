@@ -2,4 +2,31 @@
   <div class="name text-center">
     <h1><%= @user.name %></h1>
   </div>
+  
+  <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">お気に入りレシピリスト▼</button>
+  <div id="demo" class="collapse">
+    <div class="item">
+      <% @like_recipes.each do |recipe| %>
+        <div class="col-md-3 col-sm-4 col-xs-12">
+          <div class="panel panel-default">
+            <div class="panel-heading text-center">
+              <a href= "<%= recipe.url %>" target="_blank">
+                <div class="sample2">
+                  <img src="<%= recipe.food_image_url %>" alt="" width="200" height="180" >
+                  <div class="mask">
+		                <div class="caption">楽天レシピで<br>詳細を確認する</div>
+		              </div>
+                </div>
+              </a>
+            </div>
+            <div class="panel-body">
+              <!--表示が崩れるため文字は１５文字までとする-->
+              <p class="item-title"><%= truncate(recipe.title, length: 15) %></p>
+              <%= render 'likes/like_button', recipe: recipe %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

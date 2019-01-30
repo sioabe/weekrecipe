@@ -22,6 +22,7 @@
             <div class="panel-body">
               <!--表示が崩れるため文字は１５文字までとする-->
               <p class="item-title"><%= truncate(recipe.title, length: 15) %></p>
+              <%= render 'likes/like_button', recipe: recipe %>
             </div>
           </div>
         </div>

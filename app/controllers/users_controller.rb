@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:show]
+  before_action :require_user_logged_in, only: [:show, :like_recipes]
   
   def show
     @user = User.find(params[:id])
+    @like_recipes = @user.like_recipes
   end
 
   def new
@@ -19,6 +20,14 @@ class UsersController < ApplicationController
       render :new
     end
   end
+  
+  def like_recipes
+    @user = User.find(params[:id])
+    @likes = @user.like_recipes
+    @likes.each do |like|
+      @like_recipe = User.find(like.recipe_id)
+    end
+  end  
   
   private
   

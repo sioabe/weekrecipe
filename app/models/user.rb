@@ -6,5 +6,21 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   
   has_secure_password
+  #お気に入り機能
   
+  has_many :likes
+  has_many :like_recipes, through: :likes, source: :recipe
+  
+  def fav(recipe)
+    self.likes.find_or_create_by(recipe_id: recipe.id)
+  end
+  
+  def unfav(recipe)
+    like = self.likes.find_by(recipe_id: recipe.id)
+    like.destroy if like
+  end
+
+  def fav?(recipe)
+    self.like_recipes.include?(recipe)
+  end
 end
