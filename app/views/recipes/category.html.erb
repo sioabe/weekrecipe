@@ -6,7 +6,7 @@
     <!--カテゴリ一覧　サイドバーに表示-->
     <div class="col-xs-2">
       <ul class="list-group">
-        <% @categories.each_with_index do |category,i| %>
+        <% Category.all.each_with_index do |category,i| %>
         <% break if i==12 %>
           <li class="list-group-item">
             <%= link_to category.name,

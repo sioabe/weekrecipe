@@ -7,7 +7,6 @@ class User < ApplicationRecord
   
   has_secure_password
   #お気に入り機能
-  
   has_many :likes
   has_many :like_recipes, through: :likes, source: :recipe
   
@@ -23,4 +22,22 @@ class User < ApplicationRecord
   def fav?(recipe)
     self.like_recipes.include?(recipe)
   end
+  
+  #買物リスト機能storage
+  has_many :storage_lists
+  has_many :buy_storage_recipes, through: :storage_lists, source: :recipe
+  
+  def record(recipe)
+    self.storage_lists.find_or_create_by(recipe_id: recipe.id)
+  end
+  
+  def unrecord(recipe)
+    storage_list = self.storage_lists.find_by(recipe_id: recipe.id)
+    storage_list.destroy if storage_list
+  end
+  
+  def record?(recipe)
+    self.buy_storage_recipes.include?(recipe)
+  end
+  
 end

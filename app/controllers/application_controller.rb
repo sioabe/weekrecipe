@@ -3,8 +3,8 @@ class ApplicationController < ActionController::Base
   
   include SessionsHelper
   
-  private
-  
+private
+
   #ログイン済ユーザーのみ許可するためのメソッド
   def require_user_logged_in
     unless logged_in?

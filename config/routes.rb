@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  get 'updates/new'
+  get 'storages/new'
+
   root to:'toppages#index'
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
@@ -9,6 +12,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :new, :create] do
     member do
       get :like_recipes
+      get :buy_storage_recipes
     end
   end  
   resources :recipes, only: [:new] 
@@ -17,4 +21,5 @@ Rails.application.routes.draw do
   
   resources :likes, only: [:create, :destroy]
   #resources :categories, only:[:new]
+  resources :storage_lists, only: [:create, :destroy]
 end

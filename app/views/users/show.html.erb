@@ -3,6 +3,31 @@
     <h1><%= @user.name %></h1>
   </div>
   
+  
+  <!--確認用-->
+<%= render 'updates/update_button'%>
+<%= render 'storages/storage_button'%>
+  <p><%= Date.today %></p>
+  <ul>
+    <%= recipes = Recipe.all %>
+    <% recipes.each do |r| %>
+      <li><%= r.category_id %> ◇ <%= r.id %> ◇ <%= r.rakuten_recipe_id %> ◇ <%= r.update_date %></li>
+    <% end %>
+  </ul>
+  
+  <h2>storage</h2>
+  <ul>
+    <%= storages = Storage.all %>
+    <% storages.each do |s| %>
+      <li><%= s.id %> ◇ <%= s.recipe_id %> ◇ <%= s.food_id %> </li>
+    <% end %>
+  </ul>
+  <div>
+  
+  </div>
+  <!--確認ここまで-->
+  
+<!--お気に入りレシピリスト-->
   <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">お気に入りレシピリスト▼</button>
   <div id="demo" class="collapse">
     <div class="item">

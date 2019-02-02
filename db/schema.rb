@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190130025418) do
+ActiveRecord::Schema.define(version: 20190201100950) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "rakuten_category_id"
@@ -18,6 +18,18 @@ ActiveRecord::Schema.define(version: 20190130025418) do
     t.string   "url"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+  end
+
+  create_table "foods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "name"
+    t.string   "hiragana"
+    t.string   "katakana"
+    t.string   "kanzi"
+    t.string   "other1"
+    t.string   "other2"
+    t.string   "other3"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "likes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -38,6 +50,32 @@ ActiveRecord::Schema.define(version: 20190130025418) do
     t.string   "category_id"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.datetime "update_date"
+  end
+
+  create_table "storage_lists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "recipe_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["recipe_id"], name: "index_storage_lists_on_recipe_id", using: :btree
+    t.index ["user_id"], name: "index_storage_lists_on_user_id", using: :btree
+  end
+
+  create_table "storages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "recipe_id"
+    t.integer  "food_id"
+    t.string   "material_no"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["food_id"], name: "index_storages_on_food_id", using: :btree
+    t.index ["recipe_id"], name: "index_storages_on_recipe_id", using: :btree
+  end
+
+  create_table "updates", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date     "update_date"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -50,4 +88,8 @@ ActiveRecord::Schema.define(version: 20190130025418) do
 
   add_foreign_key "likes", "recipes"
   add_foreign_key "likes", "users"
+  add_foreign_key "storage_lists", "recipes"
+  add_foreign_key "storage_lists", "users"
+  add_foreign_key "storages", "foods"
+  add_foreign_key "storages", "recipes"
 end

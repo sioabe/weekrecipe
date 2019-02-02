@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :require_user_logged_in, only: [:show, :like_recipes]
+  before_action :require_user_logged_in, only: [:show, :like_recipes, :buy_storage_recipes]
   
   def show
     @user = User.find(params[:id])
@@ -28,6 +28,13 @@ class UsersController < ApplicationController
       @like_recipe = User.find(like.recipe_id)
     end
   end  
+  
+  def buy_storage_recipes
+    @user = User.find(params[:id])
+    @buy_storage_recipes = @user.buy_storage_recipes
+    #@buy_storage_recipes.each do |recipe|
+      #@buy_storage_recipe = User.find(recipe.recipe_id)
+  end
   
   private
   

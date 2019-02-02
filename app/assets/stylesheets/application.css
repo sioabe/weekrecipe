@@ -107,3 +107,9 @@ footer {
 	opacity:		1;	/* マスクを表示する */
 	padding-top:		80px;	/* ホバーで下にずらす */
 }
+
+/*レシピ回り込み防止*/
+.recipelist{
+   clear: both;
+  
+}
