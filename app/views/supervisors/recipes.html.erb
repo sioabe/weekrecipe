@@ -17,7 +17,7 @@
       <%= recipes = Recipe.all %>
       <% recipes.each do |f| %>
         <tr>
-          <td><%= f.id %></td>
+          <td><%=link_to f.id, edit_recipe_path(f) %></td>
           <td><%= f.rakuten_recipe_id %></td>
           <td><%= f.title %></td>
           <td><%= f.materials %></td>

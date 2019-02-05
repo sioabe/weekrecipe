@@ -16,6 +16,11 @@ Rails.application.routes.draw do
   post 'supervisor_login', to: 'supervisor_sessions#create'
   delete 'supervisor_logout', to: 'supervisor_sessions#destroy'
 
+  resources :foods, only: [:update] do
+    member do
+      get :edit
+    end
+  end
 
   root to:'toppages#index'
   get 'login', to: 'sessions#new'
@@ -29,7 +34,7 @@ Rails.application.routes.draw do
       get :buy_storage_recipes
     end
   end  
-  resources :recipes, only: [:new]do
+  resources :recipes, only: [:new,:update] do
     member do
       get :edit
     end
