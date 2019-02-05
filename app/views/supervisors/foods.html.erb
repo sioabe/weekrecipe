@@ -1,0 +1,37 @@
+<div class="row">
+  <h1><%= current_supervisor.name %>管理者ページ</h1>
+  
+  <%= render "supervisors/tab" %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+        <th>hiragana</th>
+        <th>katakana</th>
+        <th>kanzi</th>
+        <th>other1</th>
+        <th>other2</th>
+        <th>other3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= foods = Food.all %>
+      <% foods.each do |f| %>
+        <tr>
+          <td><%= f.id %></td>
+          <td><%= f.name %></td>
+          <td><%= f.hiragana %></td>
+          <td><%= f.katakana %></td>
+          <td><%= f.kanzi %></td>
+          <td><%= f.other1 %></td>
+          <td><%= f.other2 %></td>
+          <td><%= f.other3 %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+    
+  
+</div>

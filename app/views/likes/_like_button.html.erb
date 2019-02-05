@@ -1,3 +1,4 @@
+<% if logged_in? %>
 <% if current_user.fav?(recipe) %>
   <%= form_for(current_user.likes.find_by(recipe_id: recipe), html: { method: :delete }) do |f| %>
     <%= hidden_field_tag :recipe_id, recipe.id %>
@@ -8,4 +9,5 @@
     <%= hidden_field_tag :recipe_id, recipe.id %>
     <%= f.submit 'お気に入り登録', class: 'btn btn-primary btn-block' %>
   <% end %>
+<% end %>
 <% end %>

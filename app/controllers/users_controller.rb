@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in, only: [:show, :like_recipes, :buy_storage_recipes]
+  before_action :correct_user, only: [:show]
   
   def show
     @user = User.find(params[:id])
@@ -35,6 +36,15 @@ class UsersController < ApplicationController
     #@buy_storage_recipes.each do |recipe|
       #@buy_storage_recipe = User.find(recipe.recipe_id)
   end
+
+  def correct_user
+    user = User.find(params[:id])
+    unless user == current_user
+      redirect_to root_url
+      flash[:danger]="権限がありません"
+    end
+  end
+
   
   private
   

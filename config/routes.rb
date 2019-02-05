@@ -1,7 +1,21 @@
 Rails.application.routes.draw do
-
+  
   get 'updates/new'
   get 'storages/new'
+  
+  #管理者画面
+  resources :supervisors, only: [:show, :new, :create] do
+    member do
+      get :foods 
+      get :recipes
+      get :users
+    end
+  end
+  #管理者ログイン画面
+  get 'supervisor_login', to: 'supervisor_sessions#new'
+  post 'supervisor_login', to: 'supervisor_sessions#create'
+  delete 'supervisor_logout', to: 'supervisor_sessions#destroy'
+
 
   root to:'toppages#index'
   get 'login', to: 'sessions#new'
@@ -15,7 +29,11 @@ Rails.application.routes.draw do
       get :buy_storage_recipes
     end
   end  
-  resources :recipes, only: [:new] 
+  resources :recipes, only: [:new]do
+    member do
+      get :edit
+    end
+  end
   get'recipes/category', to:"recipes#category" 
   get'recipes/random', to:"recipes#random"
   

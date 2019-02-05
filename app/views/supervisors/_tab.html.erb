@@ -1,0 +1,8 @@
+<div class="col-xs-12">
+  <ul class="nav nav-tabs nav-justified">
+    <li class="<%= 'active' if current_page?(supervisor_path) %>"><%= link_to supervisor_path do %><%= current_supervisor.name %><% end %></li>
+    <li class="<%= 'active' if current_page?(foods_supervisor_path) %>"><%= link_to foods_supervisor_path do %>foods<% end %></li>
+    <li class="<%= 'active' if current_page?(recipes_supervisor_path) %>"><%= link_to recipes_supervisor_path do %>recipes<% end %></li>
+    <li class="<%= 'active' if current_page?(users_supervisor_path) %>"><%= link_to users_supervisor_path do %>users<% end %></li>
+  </ul>
+</div>

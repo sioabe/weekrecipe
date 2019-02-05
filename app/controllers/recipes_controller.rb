@@ -18,6 +18,10 @@ class RecipesController < ApplicationController
     @recipes= Recipe.where(update_date: update)
   end
 
+  #レシピ編集用　管理者のみ許可
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
   
 
 end

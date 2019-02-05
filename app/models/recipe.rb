@@ -19,5 +19,12 @@ class Recipe < ApplicationRecord
   has_many :storage_lists
   has_many :buy_storage_users, through: :storage_lists, source: :user
   
+  validate :check_number_of_recipes
+
+ def check_number_of_recipes
+  if StorageList.count > 6
+   errors.add(:storage_lists, "人数OVER")
+  end
+ end
   
 end

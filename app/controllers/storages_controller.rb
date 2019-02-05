@@ -6,14 +6,13 @@ class StoragesController < ApplicationController
   
 #全レシピの食材を登録する
   def storage
-    
+  Storage.destroy_all
   recipes = Recipe.all
   recipes.each do |recipe|
-    #テストとしてrecipe=Recipe.firstとする
-    #recipe = Recipe.first
+
     unless Storage.find_by(recipe_id: recipe.id)
       recipe.materials.each_with_index do |material,i|
-        material = material.delete("★,☆,◇,？,＞,>,＜,<,□,◆") #記号は削除する
+        material = material.delete("★,☆,◇,？,＞,>,＜,<,□,◆,▼,・,〇,○,◎,＝,●,■") #記号は削除する
         if Food.find_by(name: material)
           food = Storage.new(recipe_id: recipe.id, food_id: Food.find_by(name: material).id, material_no: i )
           food.save

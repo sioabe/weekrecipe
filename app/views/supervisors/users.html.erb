@@ -1,0 +1,28 @@
+<div class="row">
+  <h1><%= current_supervisor.name %>管理者ページ</h1>
+  <%= render "supervisors/tab" %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= users = User.all %>
+      <% users.each do |f| %>
+        <tr>
+          <td><%= f.id %></td>
+          <td><%= f.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+    
+  <%= storages = Storage.all %>
+    <% storages.each do |s| %>
+      <li><%= s.id %> ◇ <%= s.recipe_id %> ◇ <%= s.food_id %> </li>
+    <% end %>
+  
+</div>

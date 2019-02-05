@@ -1,0 +1,31 @@
+<div class="row">
+  <h1><%= current_supervisor.name %>管理者ページ</h1>
+  
+  <%= render "supervisors/tab" %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>rakuten_recipe_id</th>
+        <th>title</th>
+        <th>materials</th>
+        <th>update_date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= recipes = Recipe.all %>
+      <% recipes.each do |f| %>
+        <tr>
+          <td><%= f.id %></td>
+          <td><%= f.rakuten_recipe_id %></td>
+          <td><%= f.title %></td>
+          <td><%= f.materials %></td>
+          <td><%= f.update_date %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+    
+  
+</div>
