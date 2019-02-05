@@ -31,7 +31,7 @@
             </ul>
             
         <% elsif supervisor_logged_in? %>
-          <li><%= link_to '管理者ログイン',supervisor_login_path %></li>
+          <li><%= link_to '管理者ページ',supervisor_path(current_supervisor.id) %></li>
           <li><%= link_to'ログアウト', supervisor_logout_path, method: :delete %></li>
         <% else %>
           <li><%= link_to '新規登録',signup_path %></li>

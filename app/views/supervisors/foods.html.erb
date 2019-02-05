@@ -20,7 +20,7 @@
       <%= foods = Food.all %>
       <% foods.each do |f| %>
         <tr>
-          <td><%= f.id %></td>
+          <td><%= link_to f.id, edit_food_path(f) %></td>
           <td><%= f.name %></td>
           <td><%= f.hiragana %></td>
           <td><%= f.katakana %></td>

@@ -1,2 +1,30 @@
-<h1>Foods#edit</h1>
-<p>Find me in app/views/foods/edit.html.erb</p>
+<h1>id: <%= @food.id %> のレシピ編集ページ</h1>
+
+<%= @food.name %>
+
+<%= form_for(@food) do |f| %>
+
+    <%= f.label :name,"マスタname" %>
+    <%= f.text_field :name, class: 'form-control' %>
+    
+    <%= f.label :hirgana,"平仮名" %>
+    <%= f.text_field :hiragana, class: 'form-control' %>
+    
+    <%= f.label :katakana,"カタカナ" %>
+    <%= f.text_field :katakana, class: 'form-control' %>
+    
+    <%= f.label :kanzi,"漢字" %>
+    <%= f.text_field :kanzi, class: 'form-control' %>
+    
+    <%= f.label :other1,"other1" %>
+    <%= f.text_field :other1, class: 'form-control' %>
+    
+    <%= f.label :other2,"other2" %>
+    <%= f.text_field :other2, class: 'form-control' %>
+    
+    <%= f.label :other3,"other3" %>
+    <%= f.text_field :other3, class: 'form-control' %>
+    
+    <%= f.submit "登録" %>
+
+<% end %>
