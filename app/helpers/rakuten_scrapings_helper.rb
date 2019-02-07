@@ -1,0 +1,2 @@
+module RakutenScrapingsHelper
+end

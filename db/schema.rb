@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190207005531) do
+ActiveRecord::Schema.define(version: 20190207084037) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "rakuten_category_id"
@@ -56,6 +56,16 @@ ActiveRecord::Schema.define(version: 20190207005531) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_lists_on_user_id", using: :btree
+  end
+
+  create_table "rakuten_scrapings", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "recipe_id"
+    t.string   "rakuten_food_name"
+    t.string   "rakuten_food_amount"
+    t.string   "edit_food_name"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.index ["recipe_id"], name: "index_rakuten_scrapings_on_recipe_id", using: :btree
   end
 
   create_table "recipes", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -116,6 +126,7 @@ ActiveRecord::Schema.define(version: 20190207005531) do
   add_foreign_key "list_recipes", "lists"
   add_foreign_key "list_recipes", "recipes"
   add_foreign_key "lists", "users"
+  add_foreign_key "rakuten_scrapings", "recipes"
   add_foreign_key "storage_lists", "recipes"
   add_foreign_key "storage_lists", "users"
   add_foreign_key "storages", "foods"

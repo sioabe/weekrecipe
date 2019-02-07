@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  
+
+  resources :rakuten_scrapings, only: [:new]
   resources :lists, only: [:new, :create, :destroy, :show]
 
   get 'updates/new'
