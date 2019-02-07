@@ -1,7 +1,6 @@
-<!--買物リスト登録レシピ-->
-  <h1>買物リスト</h1>
+ <h1>保存済買物リスト：<%= @list.list_name %></h1>
     <div class="item">
-      <% current_user.buy_storage_recipes.each do |recipe| %>
+      <% @recipes.each do |recipe| %>
         <div class="col-md-3 col-sm-4 col-xs-12">
           <div class="panel panel-default">
             <div class="panel-heading text-center">
@@ -32,7 +31,7 @@
     <thead>
       <tr>
         <th>食材</th>
-        <% @user.buy_storage_recipes.each do |recipe|%>
+        <% @recipes.each do |recipe|%>
           <th><%= truncate(recipe.title, length: 15) %></th>
         <% end %>
       </tr>
@@ -46,9 +45,4 @@
       <% end %>
     </tbody>
   </table>
-</div>
-
-<!--買物リスト登録フォーム-->
-<div class="col-xs-12">
-  <%= render 'lists/new_form' %>
 </div>

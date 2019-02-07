@@ -2,14 +2,15 @@
 
 <%= @recipe.title %>
 <%= @recipe.materials %>
+<%= @recipe.materials[1] %>
 
 <%= form_for(@recipe) do |f| %>
-
     <%= f.label :title,"レシピ名" %>
     <%= f.text_field :title, class: 'form-control' %>
-    <%= f.label :materials,"食材" %>
-    <%= f.text_field :materials, class: 'form-control' %>
+
     
+   
+  
     <%= f.submit "登録" %>
 
 <% end %>

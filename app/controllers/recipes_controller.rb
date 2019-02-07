@@ -12,7 +12,6 @@ before_action :require_supervisor_logged_in, only: [:edit, :update]
   
   #データベースからカテゴリ別レシピランキングを表示
   def new
-    
     update = Update.last.update_date
     @recipes= Recipe.where(update_date: update)
   end

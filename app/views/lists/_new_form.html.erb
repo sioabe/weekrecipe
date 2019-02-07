@@ -1,0 +1,9 @@
+<% @list = List.new %>
+<%= form_for(@list) do |f| %>
+  <div class="form-group">
+    <%= f.label :list_name, '買い物リスト名を登録' %>
+    <%= f.text_field :list_name, class: 'form-control' %>
+  </div>
+  
+  <%= f.submit '買い物リストを保存', class: 'btn btn-primary btn-block' %>
+<% end %>

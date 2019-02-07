@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :lists, only: [:new, :create, :destroy, :show]
+
   get 'updates/new'
   get 'storages/new'
   

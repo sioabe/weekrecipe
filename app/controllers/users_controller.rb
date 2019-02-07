@@ -5,6 +5,8 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @like_recipes = @user.like_recipes
+    
+    
   end
 
   def new
@@ -31,6 +33,7 @@ class UsersController < ApplicationController
   end  
   
   def buy_storage_recipes
+    make_list
     @user = User.find(params[:id])
     @buy_storage_recipes = @user.buy_storage_recipes
     #@buy_storage_recipes.each do |recipe|
@@ -45,6 +48,23 @@ class UsersController < ApplicationController
     end
   end
 
+  def make_list
+    list = []
+    @user = User.find(params[:id])
+    @user.buy_storage_recipes.each do|recipe|
+      @storages = Storage.where(recipe_id: recipe.id)
+      @storages.each do |s|
+        foods=Food.where(id: s.food_id)
+        foods.each do |f|
+          list << f.id 
+        end 
+      end 
+    end
+    @uniqlist = list.uniq 
+    #表に必要な食材なら◯を表示させる、それ以外は空白
+    
+    
+  end
   
   private
   
