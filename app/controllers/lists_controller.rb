@@ -40,10 +40,7 @@ class ListsController < ApplicationController
     @recipes.each do|recipe|
       @storages = Storage.where(recipe_id: recipe.id)
       @storages.each do |s|
-        foods=Food.where(id: s.food_id)
-        foods.each do |f|
-          list << f.id 
-        end 
+        list << s.food_id 
       end 
     end
     @uniqlist = list.uniq 

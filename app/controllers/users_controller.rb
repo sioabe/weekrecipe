@@ -49,18 +49,15 @@ class UsersController < ApplicationController
   end
 
   def make_list
-    list = []
+    @list = []
     @user = User.find(params[:id])
     @user.buy_storage_recipes.each do|recipe|
       @storages = Storage.where(recipe_id: recipe.id)
       @storages.each do |s|
-        foods=Food.where(id: s.food_id)
-        foods.each do |f|
-          list << f.id 
-        end 
+        @list << s.food_id 
       end 
     end
-    @uniqlist = list.uniq 
+    @uniqlist = @list.uniq 
     #表に必要な食材なら◯を表示させる、それ以外は空白
     
     

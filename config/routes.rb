@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :rakuten_scrapings, only: [:new]
+  resources :rakuten_scrapings, only: [:new, :update] do
+    member do
+      get :edit
+    end
+  end
   resources :lists, only: [:new, :create, :destroy, :show]
 
   get 'updates/new'
@@ -12,6 +16,7 @@ Rails.application.routes.draw do
       get :foods 
       get :recipes
       get :users
+      get :rakuten_scrapings
     end
   end
   #管理者ログイン画面

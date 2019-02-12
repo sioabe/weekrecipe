@@ -32,13 +32,33 @@ class RakutenScrapingsController < ApplicationController
         doc.xpath('//li[@itemprop="ingredients"]').each do |node|
           food = p node.css('.name').inner_text #food
           amount = p node.css('.amount').inner_text #amount
-          i = RakutenScraping.new(recipe_id: recipe.id, rakuten_food_name: food, rakuten_food_amount: amount, edit_food_name: food)
+          food_edit = food.delete("★,☆,◇,？,＞,>,＜,<,□,◆,▼,・,〇,○,◎,＝,●,■") 
+          i = RakutenScraping.new(recipe_id: recipe.id, rakuten_food_name: food, rakuten_food_amount: amount, edit_food_name: food_edit)
           i.save
         end
-        
       end
     end
-
+  end
+  
+  def edit
+     @rakuten_scraping = RakutenScraping.find(params[:id])
+  end
+  
+  def update
+    @rakuten_scraping = RakutenScraping.find(params[:id])
+    if @rakuten_scraping.update(rakuten_scraping_params)
+      flash[:success] = 'food は正常に更新されました'
+      redirect_back(fallback_location: root_path)
+    else
+      flash[:danger] = 'food は更新されませんでした'
+      redirect_back(fallback_location: root_path)
+    end
+  end
+  
+  private
+  #Strong Parameter
+  def rakuten_scraping_params
+    params.require(:rakuten_scraping).permit(:rakuten_food_amount, :edit_food_name )
   end
      
 end

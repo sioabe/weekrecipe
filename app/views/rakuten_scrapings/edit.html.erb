@@ -1,0 +1,15 @@
+<h1>id: <%= @rakuten_scraping.id %> のレシピ編集ページ</h1>
+
+<%= @rakuten_scraping.rakuten_food_name %>
+
+<%= form_for(@rakuten_scraping) do |f| %>
+    
+    <%= f.label :rakuten_food_amount,"分量" %>
+    <%= f.text_field :rakuten_food_amount, class: 'form-control' %>
+    
+    <%= f.label :edit_food_name,"食材名（編集用）" %>
+    <%= f.text_field :edit_food_name, class: 'form-control' %>
+    
+    <%= f.submit "登録" %>
+
+<% end %>

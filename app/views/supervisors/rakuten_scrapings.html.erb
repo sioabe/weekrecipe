@@ -1,0 +1,32 @@
+<div class="row">
+  <h1><%= current_supervisor.name %>管理者ページ</h1>
+  
+  <%= render "supervisors/tab" %>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>recipe_id</th>
+        <th>rakuten_food_name</th>
+        <th>rakuten_food_amount</th>
+        <th>edit_food_name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= scrapings = RakutenScraping.all %>
+      <% scrapings.each do |f| %>
+        <tr>
+          <td><%= link_to f.id ,edit_rakuten_scraping_path(f), :target=>["_blank"]  %></td>
+          <td><%= f.recipe_id %></td>
+          <td><%= f.rakuten_food_name %></td>
+          <td><%= f.rakuten_food_amount %></td>
+          <td><%= f.edit_food_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+
+
+</div>

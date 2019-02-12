@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190207084037) do
+ActiveRecord::Schema.define(version: 20190208070506) do
 
   create_table "categories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "rakuten_category_id"
@@ -92,10 +92,11 @@ ActiveRecord::Schema.define(version: 20190207084037) do
   create_table "storages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "recipe_id"
     t.integer  "food_id"
-    t.string   "material_no"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.integer  "rakuten_scraping_id"
     t.index ["food_id"], name: "index_storages_on_food_id", using: :btree
+    t.index ["rakuten_scraping_id"], name: "index_storages_on_rakuten_scraping_id", using: :btree
     t.index ["recipe_id"], name: "index_storages_on_recipe_id", using: :btree
   end
 
@@ -130,5 +131,6 @@ ActiveRecord::Schema.define(version: 20190207084037) do
   add_foreign_key "storage_lists", "recipes"
   add_foreign_key "storage_lists", "users"
   add_foreign_key "storages", "foods"
+  add_foreign_key "storages", "rakuten_scrapings"
   add_foreign_key "storages", "recipes"
 end
