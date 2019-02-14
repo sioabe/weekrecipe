@@ -55,6 +55,10 @@ class RakutenScrapingsController < ApplicationController
     end
   end
   
+  #rakuten_scrapingに情報を追加する
+  def add_scraping
+  end
+  
   private
   #Strong Parameter
   def rakuten_scraping_params

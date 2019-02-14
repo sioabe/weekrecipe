@@ -7,6 +7,8 @@
     <thead>
       <tr>
         <th>id</th>
+        <th>no</th>
+        <th>group</th>
         <th>name</th>
         <th>hiragana</th>
         <th>katakana</th>
@@ -17,10 +19,34 @@
       </tr>
     </thead>
     <tbody>
-      <%= foods = Food.all %>
+      <%= foods = Food.all.order('no ASC') %>
       <% foods.each do |f| %>
         <tr>
           <td><%= link_to f.id, edit_food_path(f) %></td>
+          <td><%= f.no %></td>
+          <% if f.no =="1"%>
+            <td>肉</td>
+          <% elsif f.no =="2"%>
+            <td>魚</td>
+          <% elsif f.no =="3"%>
+            <td>野菜</td>
+          <% elsif f.no =="4"%>
+            <td>大豆加工食品</td>
+          <% elsif f.no =="5"%>
+            <td>お菓子関連</td>
+          <% elsif f.no =="6"%>
+            <td>その他</td>
+          <% elsif f.no =="7"%>
+            <td>薬味</td>
+          <% elsif f.no =="8"%>
+            <td>粉</td>
+          <% elsif f.no =="9"%>
+            <td>ソース</td>
+          <% elsif f.no =="10"%>
+            <td>調味料</td>
+          <% else %>
+            <td></td>
+          <% end %>
           <td><%= f.name %></td>
           <td><%= f.hiragana %></td>
           <td><%= f.katakana %></td>

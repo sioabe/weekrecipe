@@ -24,7 +24,7 @@ Rails.application.routes.draw do
   post 'supervisor_login', to: 'supervisor_sessions#create'
   delete 'supervisor_logout', to: 'supervisor_sessions#destroy'
 
-  resources :foods, only: [:update] do
+  resources :foods, only: [:update, :destroy] do
     member do
       get :edit
     end
@@ -51,6 +51,6 @@ Rails.application.routes.draw do
   get'recipes/random', to:"recipes#random"
   
   resources :likes, only: [:create, :destroy]
-  #resources :categories, only:[:new]
+
   resources :storage_lists, only: [:create, :destroy]
 end

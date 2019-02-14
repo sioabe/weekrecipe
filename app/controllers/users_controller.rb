@@ -54,13 +54,11 @@ class UsersController < ApplicationController
     @user.buy_storage_recipes.each do|recipe|
       @storages = Storage.where(recipe_id: recipe.id)
       @storages.each do |s|
-        @list << s.food_id 
+        @list << Food.find(s.food_id) 
+
       end 
     end
-    @uniqlist = @list.uniq 
-    #表に必要な食材なら◯を表示させる、それ以外は空白
-    
-    
+    @uniqlist = @list.uniq
   end
   
   private

@@ -1,8 +1,24 @@
-<h1>id: <%= @food.id %> のレシピ編集ページ</h1>
+<h1>id: <%= @food.id %> のfood編集ページ</h1>
+<p><%= link_to "food一覧に戻る",foods_supervisor_path(@current_supervisor), class: "btn btn-success btn-s" %></p>
 
 <%= @food.name %>
 
 <%= form_for(@food) do |f| %>
+
+    <%= f.label :no,"分類" %>
+    <ul>
+        <li>１　肉類</li>
+        <li>２　魚類</li>
+        <li>３　野菜</li>
+        <li>４　大豆加工食品</li>
+        <li>５　お菓子関連</li>
+        <li>６　その他</li>
+        <li>７　薬味</li>
+        <li>８　粉</li>
+        <li>９　ソース</li>
+        <li>１０調味料</li>
+    </ul>
+    <%= f.text_field :no, class: 'form-control' %>
 
     <%= f.label :name,"マスタname" %>
     <%= f.text_field :name, class: 'form-control' %>
@@ -26,5 +42,6 @@
     <%= f.text_field :other3, class: 'form-control' %>
     
     <%= f.submit "登録" %>
+    <%= link_to "削除",@food, method: :delete, data: { confirm:"削除してもよろしいですか？" }, class: "btn btn-danger btn-xs" %>
 
 <% end %>

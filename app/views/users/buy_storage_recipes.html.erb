@@ -40,10 +40,10 @@
     <tbody>
       <% @uniqlist.each do |l| %>
             <tr>
-              <td><%= Food.find(l).name %></td>
+              <td><%= l.name %></td>
               <% @user.buy_storage_recipes.each do |recipe|%>
-                <% unless Storage.where(recipe_id: recipe.id, food_id: l).empty?%>
-                  <% storages = Storage.where(recipe_id: recipe.id, food_id: l) %>
+                <% unless Storage.where(recipe_id: recipe.id, food_id: l.id).empty?%>
+                  <% storages = Storage.where(recipe_id: recipe.id, food_id: l.id) %>
                   <% storage = storages.first %>
                   <td><%= RakutenScraping.find(storage.rakuten_scraping_id).rakuten_food_amount %></td>
                 <% else %>

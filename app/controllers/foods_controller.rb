@@ -16,10 +16,17 @@ class FoodsController < ApplicationController
     end
   end
   
+  def destroy
+    @food = Food.find(params[:id])
+    @food.destroy
+    flash[:success] = 'メッセージを削除しました。'
+    render 'supervisors/foods', supervisors: @current_supervisor
+  end
+    
   private
   #Strong Parameter
   def food_params
-    params.require(:food).permit(:name, :hiragana, :katakana, :kanzi, :other1, :other2, :other3 )
+    params.require(:food).permit(:no, :name, :hiragana, :katakana, :kanzi, :other1, :other2, :other3 )
   end
   
 end
