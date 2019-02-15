@@ -60,6 +60,14 @@ class RakutenScrapingsController < ApplicationController
   def add_scraping
   end
   
+  #rakuten_scrapingから削除する
+  def destroy
+    @rakuten_scraping = RakutenScraping.find(params[:id])
+    @rakuten_scraping.destroy
+    flash[:success] = '削除しました。'
+    render 'supervisors/rakuten_scrapings', supervisors: @current_supervisor
+  end
+  
   private
   #Strong Parameter
   def rakuten_scraping_params

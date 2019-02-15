@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  resources :rakuten_scrapings, only: [:new, :update] do
+  resources :rakuten_scrapings, only: [:new, :update, :destroy] do
     member do
       get :edit
     end

@@ -1,4 +1,4 @@
-<h1>id: <%= @rakuten_scraping.id %> のレシピ編集ページ</h1>
+<h1>id: <%= @rakuten_scraping.id %> のrakuten_scraping編集ページ</h1>
 
 <%= @rakuten_scraping.rakuten_food_name %>
 
@@ -11,5 +11,6 @@
     <%= f.text_field :edit_food_name, class: 'form-control' %>
     
     <%= f.submit "登録" %>
-
+    <%= link_to"削除",@rakuten_scraping, method: :delete, data: {confirm:"削除してもよろしいですか？" },class:"btn btn-danger btn-xs"%>
+    
 <% end %>
