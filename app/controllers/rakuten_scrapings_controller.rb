@@ -15,9 +15,8 @@ class RakutenScrapingsController < ApplicationController
 
     #recipe.urlをループで回す。ただし、rakuten_scrapingテーブルにすでに登録されているレシピについては対象外。
     recipes = Recipe.all
-    #recipes.each do |recipe|
-    recipes.each_with_index do|recipe,i|
-      if i < 20 
+    recipes.each do |recipe|
+    
       unless RakutenScraping.find_by(recipe_id: recipe.id) 
 
         url = recipe.url
@@ -38,7 +37,6 @@ class RakutenScrapingsController < ApplicationController
           i = RakutenScraping.new(recipe_id: recipe.id, rakuten_food_name: food, rakuten_food_amount: amount, edit_food_name: food_edit)
           i.save
         end
-      end
       end
     end
   end
