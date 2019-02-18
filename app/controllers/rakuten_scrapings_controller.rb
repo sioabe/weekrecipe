@@ -33,7 +33,7 @@ class RakutenScrapingsController < ApplicationController
         doc.xpath('//li[@itemprop="ingredients"]').each do |node|
           food = p node.css('.name').inner_text #food
           amount = p node.css('.amount').inner_text #amount
-          food_edit = food.delete("★,☆,◇,？,＞,>,＜,<,□,◆,▼,・,〇,○,◎,＝,●,■") 
+          food_edit = food.delete("★,☆,◇,？,＞,>,＜,<,□,◆,▼,・,〇,○,◎,＝,●,■, ") 
           i = RakutenScraping.new(recipe_id: recipe.id, rakuten_food_name: food, rakuten_food_amount: amount, edit_food_name: food_edit)
           i.save
         end
