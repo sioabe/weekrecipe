@@ -58,6 +58,18 @@ class RakutenScrapingsController < ApplicationController
   
   #rakuten_scrapingに情報を追加する
   def add_scraping
+    @rakuten_scraping = RakutenScraping.new
+  end
+  
+  def create
+    @rakuten_scraping = RakutenScraping.new(create_rakuten_scraping_params)
+    if @rakuten_scraping.save
+      flash[:success] = '登録しました'
+      redirect_back(fallback_location: root_path)
+    else
+      flash.now[:danger] = '登録に失敗しました'
+      redirect_back(fallback_location: root_path)
+    end
   end
   
   #rakuten_scrapingから削除する
@@ -72,6 +84,10 @@ class RakutenScrapingsController < ApplicationController
   #Strong Parameter
   def rakuten_scraping_params
     params.require(:rakuten_scraping).permit(:rakuten_food_amount, :edit_food_name )
+  end
+  
+  def create_rakuten_scraping_params
+    params.require(:rakuten_scraping).permit(:recipe_id, :rakuten_food_name, :rakuten_food_amount, :edit_food_name )
   end
      
 end

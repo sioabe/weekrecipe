@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
-  resources :rakuten_scrapings, only: [:new, :update, :destroy] do
+  resources :rakuten_scrapings, only: [:new, :update, :destroy, :create] do
     member do
       get :edit
     end
   end
+  
+  get 'rakuten_scrapings/add_scraping', to:"rakuten_scrapings#add_scraping" 
+  
   resources :lists, only: [:new, :create, :destroy, :show]
 
   get 'updates/new'
