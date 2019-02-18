@@ -7,7 +7,15 @@ before_action :require_supervisor_logged_in, only: [:edit, :update]
   end
   
   def random
-    @random_recipes = Recipe.order("RAND()").limit(5)
+    # ちょとコメントすると、Rails.env.development? の場合は↑を、そうでない場合は下を
+    # みたいな分岐条件で対処する、とかですかね...by @mentor-uchiyama
+    # 但しこのような環境依存な分岐条件は、多用すると見通しが悪くなりがち。
+    # 極力利用を控えることを検討されてみてください！
+    if Rails.env.development?
+      @random_recipes = Recipe.order("RAND()").limit(5)  #MySQL用
+    else
+      @random_recipes = Recipe.order("RANDOM()").limit(5)
+    end
   end
   
   #データベースからカテゴリ別レシピランキングを表示
