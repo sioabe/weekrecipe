@@ -119,3 +119,65 @@ footer {
    clear: both;
   
 }
+
+/*お気に入りボタン*/
+.btn-flat-border-enter {
+  display: inline-block;
+  padding: 0.3em 5em;
+  text-decoration: none;
+  color: #ffb6c1;
+  border: solid 2px #ffb6c1;
+  border-radius: 3px;
+  transition: .4s;
+}
+.btn-flat-border-enter:hover {
+  background: #ffb6c1;
+  color: white;
+}
+.btn-flat-border-danger {
+  display: inline-block;
+  padding: 0.3em 5em;
+  text-decoration: none;
+  color: white;
+  border: solid 2px #ffb6c1;
+  border-radius: 3px;
+  transition: .4s;
+  background: #ffb6c1;
+}
+.btn-flat-border-danger:hover {
+  background: white;
+  color: #ffb6c1;
+}
+
+/*買い物リスト登録*/
+.btn-flat-border-list-enter {
+  display: inline-block;
+  padding: 0.3em 5em;
+  text-decoration: none;
+  color: #67c5ff;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+}
+.btn-flat-border-list-enter:hover {
+  background: #67c5ff;
+  color: white;
+}
+.btn-flat-border-list-danger {
+  display: inline-block;
+  padding: 0.3em 5em;
+  text-decoration: none;
+  color: white;
+  border: solid 2px #67c5ff;
+  border-radius: 3px;
+  transition: .4s;
+  background: #67c5ff;
+}
+.btn-flat-border-list-danger:hover {
+  background: white;
+  color: #67c5ff;
+}
+
+.button_wrapper{
+  text-align:center;
+}

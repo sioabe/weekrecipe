@@ -7,8 +7,12 @@
     </div>
   </div>
   <div class="top-button">
-    <%= link_to '新規登録', signup_path ,class: "square_btn" %>
-    <%= link_to 'ログイン', login_path, class: "square_btn" %>
+    <% if logged_in? %>
+      <%= link_to 'マイページ', user_path(current_user), class: "square_btn" %>
+    <% else %>
+      <%= link_to '新規登録', signup_path ,class: "square_btn" %>
+      <%= link_to 'ログイン', login_path, class: "square_btn" %>
+    <% end %>
   </div>
 <% end %>
 

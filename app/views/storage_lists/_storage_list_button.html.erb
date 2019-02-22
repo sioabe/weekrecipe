@@ -1,11 +1,15 @@
   <% if current_user.record?(recipe) %>
-    <%= form_for(current_user.storage_lists.find_by(recipe_id: recipe.id), html: { method: :delete }) do |f| %>
-      <%= hidden_field_tag :recipe_id, recipe.id %>
-      <%= f.submit '買物リスト解除', class: 'btn btn-danger btn-block' %>
-    <% end %>
+    <div class="button_wrapper">
+      <%= form_for(current_user.storage_lists.find_by(recipe_id: recipe.id), html: { method: :delete }) do |f| %>
+        <%= hidden_field_tag :recipe_id, recipe.id %>
+        <%= f.submit '買物リスト解除', class: 'btn-flat-border-list-danger' %>
+      <% end %>
+    </div>
   <% else %>
-    <%= form_for(current_user.storage_lists.build) do |f| %>
-      <%= hidden_field_tag :recipe_id, recipe.id %>
-      <%= f.submit '買物リスト登録', class: 'btn btn-primary btn-block' %>
-    <% end %>
+    <div class="button_wrapper">
+      <%= form_for(current_user.storage_lists.build) do |f| %>
+        <%= hidden_field_tag :recipe_id, recipe.id %>
+        <%= f.submit '買物リスト登録', class: 'btn-flat-border-list-enter' %>
+      <% end %>
+    </div>
   <% end %>

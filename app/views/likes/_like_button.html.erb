@@ -1,11 +1,15 @@
 <% if current_user.fav?(recipe) %>
-  <%= form_for(current_user.likes.find_by(recipe_id: recipe), html: { method: :delete }) do |f| %>
-    <%= hidden_field_tag :recipe_id, recipe.id %>
-    <%= f.submit 'お気に入り解除', class: 'btn btn-danger btn-block' %>
-  <% end %>
+  <div class="button_wrapper">
+    <%= form_for(current_user.likes.find_by(recipe_id: recipe), html: { method: :delete }) do |f| %>
+      <%= hidden_field_tag :recipe_id, recipe.id %>
+      <%= f.submit 'お気に入り解除', class: 'btn-flat-border-danger' %>
+    <% end %>
+  </div>
 <% else %>
-  <%= form_for(current_user.likes.build) do |f| %>
-    <%= hidden_field_tag :recipe_id, recipe.id %>
-    <%= f.submit 'お気に入り登録', class: 'btn btn-primary btn-block' %>
-  <% end %>
+  <div class="button_wrapper">
+    <%= form_for(current_user.likes.build) do |f| %>
+      <%= hidden_field_tag :recipe_id, recipe.id %>
+      <%= f.submit 'お気に入り登録', class: 'btn-flat-border-enter' %>
+    <% end %>
+  </div>
 <% end %>

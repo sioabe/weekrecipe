@@ -2,8 +2,12 @@ class RecipesController < ApplicationController
 before_action :require_supervisor_logged_in, only: [:edit, :update]
   
   def category
-    
-    @category_recipes = Recipe.where(category_id: params[:category_id]) 
+    if params[:category_id].present?
+      @category_recipes = Recipe.where(category_id: params[:category_id]) 
+    else
+      # パラメーターを受け取れていないなら
+      @category_recipes = Recipe.where(category_id: Category.first.rakuten_category_id)
+    end
   end
   
   def random

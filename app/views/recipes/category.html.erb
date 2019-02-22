@@ -4,6 +4,7 @@
 <div class="container">
   <div class="row">
     <!--カテゴリ一覧　サイドバーに表示-->
+
     <div class="col-xs-2">
       <ul class="list-group">
         <% Category.all.each_with_index do |category,i| %>
@@ -20,7 +21,6 @@
 
 <!--カテゴリ別レシピ表示部分-->
     <div class="col-xs-10">
-  
       <% @category_recipes.each do |recipe| %>
         <div class="item">
           <div class="col-md-4 col-sm-5 col-xs-12">
