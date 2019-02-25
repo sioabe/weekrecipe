@@ -6,6 +6,17 @@ class ListsController < ApplicationController
     @list.user_id = current_user.id
     
     if @list.save
+      #list_recipesに登録
+      @user = User.find(current_user.id)
+      recipes = @user.buy_storage_recipes
+      recipes.each do |recipe|
+        @list_recipe = ListRecipe.new
+        @list_recipe.list_id = @list.id
+        @list_recipe.recipe_id = recipe.id
+        @list_recipe.save
+      end
+      #買い物レシピから登録を削除
+      @user.buy_storage_recipes.destroy_all
       flash[:success] = "買い物リストを登録しました。リストはマイページで確認できます。"
       redirect_back(fallback_location: root_path) 
     else
@@ -13,20 +24,15 @@ class ListsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
     
-    #list_recipesに登録
-    @user = User.find(current_user.id)
-    recipes = @user.buy_storage_recipes
-    recipes.each do |recipe|
-      @list_recipe = ListRecipe.new
-      @list_recipe.list_id = @list.id
-      @list_recipe.recipe_id = recipe.id
-      @list_recipe.save
-    end
-    #買い物レシピから登録を削除
-    @user.buy_storage_recipes.destroy_all
+    
+    
   end
 
   def destroy
+    @list = List.find(params[:id])
+    @list.destroy
+    flash[:success] = '買い物リストは正常に削除されました'
+    redirect_to user_path(current_user)
   end
   
   def show

@@ -53,4 +53,5 @@
       <% end %>
     </tbody>
   </table>
+  <%= link_to '買い物リストを削除', @list, method: :delete, data: { confirm: '本当に削除してよろしいですか？' },class: 'btn btn-danger btn-s' %>
 </div>
