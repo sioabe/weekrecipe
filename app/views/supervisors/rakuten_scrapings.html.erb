@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= scrapings = RakutenScraping.all %>
+      <%= scrapings = RakutenScraping.all.order('recipe_id ASC') %>
       <% scrapings.each do |f| %>
         <tr>
           <td><%= link_to f.id ,edit_rakuten_scraping_path(f), :target=>["_blank"]  %></td>

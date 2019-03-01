@@ -6,6 +6,9 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   
   has_secure_password
+  
+  mount_uploader :picture, PictureUploader
+  
   #お気に入り機能
   has_many :likes
   has_many :like_recipes, through: :likes, source: :recipe

@@ -24,6 +24,11 @@
             <%= f.label :password_confirmation, 'パスワード（確認）' %>
             <%= f.password_field :password_confirmation, class: 'form-control' %>
           </div>
+          
+          <div class="form-group">
+            <%= f.label :picture, '画像' %>
+            <%= f.file_field :picture %>
+          </div>
 
           <div class="text-right">
             <%= f.submit '登録する', class: 'btn btn-success' %>

@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <%= recipes = Recipe.all %>
+      <%= recipes = Recipe.all.order('id ASC')%>
       <% recipes.each do |f| %>
         <tr>
           <td><%=link_to f.id, edit_recipe_path(f) %></td>

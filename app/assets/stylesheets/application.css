@@ -181,3 +181,10 @@ footer {
 .button_wrapper{
   text-align:center;
 }
+
+/*user画像のサイズ調整*/
+.userimg img {
+   width: 200px;
+  height: 230px;
+  object-fit: cover;
+}
