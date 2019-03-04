@@ -1,16 +1,21 @@
 <div class="user-profile">
   <div class="name text-center">
     <h1><%= @user.name %></h1>
-    <% if @user.picture.present? %>
-      <div class="userimg">
-        <img src="<%= @user.picture_url %>" alt="" >
-      </div>
-    <% else %>
-      <div class="userimg">
-        <img src="/images/logo_user.png" alt="" >
-      </div>
-    <% end %>
+
+      <% if @user.picture.present? %>
+        <div class="userimg">
+          <img src="<%= @user.picture_url %>" alt="" >
+        </div>
+      <% else %>
+        <div class="userimg">
+          <img src="/images/logo_user.png" alt="" >
+        </div>
+      <% end %>
+
   </div>
+  
+
+    
   
   
   

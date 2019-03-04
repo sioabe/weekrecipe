@@ -22,6 +22,39 @@ before_action :require_supervisor_logged_in, only: [:edit, :update]
     end
   end
   
+  def search
+    keyword = params[:keyword]
+    @storages = []
+    unless keyword == nil
+      if Food.find_by(name: keyword)
+        food_id = Food.find_by(name: keyword).id
+        @storages = Storage.where(food_id: food_id)
+      elsif Food.find_by(hiragana: keyword)
+        food_id = Food.find_by(hiragana: keyword).id
+        @storages = Storage.where(food_id: food_id)
+      elsif Food.find_by(katakana: keyword)
+        food_id = Food.find_by(katakana: keyword).id
+        @storages = Storage.where(food_id: food_id)
+      elsif Food.find_by(kanzi: keyword)
+        food_id = Food.find_by(kanzi: keyword).id
+        @storages = Storage.where(food_id: food_id)
+      elsif Food.find_by(other1: keyword)
+        food_id = Food.find_by(other1: keyword).id
+        @storages = Storage.where(food_id: food_id)
+      elsif Food.find_by(other2: keyword)
+        food_id = Food.find_by(other2: keyword).id
+        @storages = Storage.where(food_id: food_id)
+      elsif Food.find_by(other3: keyword)
+        food_id = Food.find_by(other3: keyword).id
+        @storages = Storage.where(food_id: food_id)
+      else
+        #対応するキーワードの食材が登録されていない場合
+        @storages = []
+      end
+
+    end
+  end
+  
   #データベースからカテゴリ別レシピランキングを表示
   def new
     update = Update.last.update_date

@@ -2,5 +2,6 @@
   <li class="<%= 'active' if current_page?(new_recipe_path) %>"><%= link_to new_recipe_path do %>カテゴリ別ランキング<% end %></li>
   <li class="<%= 'active' if current_page?(recipes_category_path) %>"><%= link_to recipes_category_path do %>カテゴリ別レシピ<% end %></li>
   <li class="<%= 'active' if current_page?(recipes_random_path) %>"><%= link_to recipes_random_path do %>ランダムレシピ<% end %></li>
+  <li class="<%= 'active' if current_page?(recipes_search_path) %>"><%= link_to recipes_search_path do %>レシピ検索<% end %></li>
 
 </ul>

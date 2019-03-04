@@ -1,14 +1,24 @@
 <%= render 'recipes/tab' %>
-<h1>ランダムレシピ</h1>
-<p>お忙しい方必見！</p>
-<p>楽天レシピの中からランダムに５レシピを抽出します。</p>
-<p>ついつい決まったものばかり食べてしまいがちですが、</p>
-<p>この機会に新しいレシピに挑戦してみてください！</p>
-<%= link_to '違うレシピを表示する', recipes_random_path, class: 'btn btn-success btn-lg' %>
+<h1>レシピ検索</h1>
+<p>食材の名前からレシピを検索！</p>
 <p></p>
+
+<div class="search">
+  <div class="row">
+    <div class="text-center">
+      <%= form_tag(recipes_search_path, method: :get, class: 'form-inline') do %>
+        <div class="form-group">
+          <%= text_field_tag :keyword, @keyword, class: 'form-control input-lg', placeholder: "食材名を入力", size: 40 %>
+        </div>
+        <%= submit_tag '商品を検索', class: 'btn btn-success btn-lg' %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
 <div class="item">
-   <% @random_recipes.each do |recipe_id| %>
-   <% recipe = Recipe.find(recipe_id) %>
+  <% @storages.each do |storage| %>
+    <% recipe = Recipe.find(storage.recipe_id) %>
     <div class="col-md-3 col-sm-4 col-xs-12">
       <div class="panel panel-default">
         <div class="panel-heading text-center">

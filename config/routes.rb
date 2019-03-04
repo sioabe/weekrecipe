@@ -52,6 +52,7 @@ Rails.application.routes.draw do
   end
   get'recipes/category', to:"recipes#category" 
   get'recipes/random', to:"recipes#random"
+  get'recipes/search', to:"recipes#search"
   
   resources :likes, only: [:create, :destroy]
 
