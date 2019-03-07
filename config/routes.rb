@@ -39,10 +39,11 @@ Rails.application.routes.draw do
   delete 'logout', to: 'sessions#destroy'
   
   get 'signup', to: 'users#new'
-  resources :users, only: [:show, :new, :create] do
+  resources :users, only: [:show, :new, :create, :update] do
     member do
       get :like_recipes
       get :buy_storage_recipes
+      get :edit
     end
   end  
   resources :recipes, only: [:new,:update] do

@@ -5,8 +5,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @like_recipes = @user.like_recipes
-    
-    
   end
 
   def new
@@ -21,6 +19,21 @@ class UsersController < ApplicationController
     else
       flash.now[:danger] = 'ユーザー登録に失敗しました'
       render :new
+    end
+  end
+  
+  def edit
+    @user = User.find(params[:id])
+  end
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_edit_params)
+      flash[:success] = 'recipe は正常に更新されました'
+      redirect_back(fallback_location: root_path)
+    else
+      flash[:danger] = 'recipe は更新されませんでした'
+      redirect_back(fallback_location: root_path)
     end
   end
   
@@ -65,5 +78,9 @@ class UsersController < ApplicationController
   
   def user_params
     params.require(:user).permit(:name, :email, :password, :password_confirmation,:picture)
+  end
+  
+  def user_edit_params
+    params.require(:user).permit(:picture)
   end
 end

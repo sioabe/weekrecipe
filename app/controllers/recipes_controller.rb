@@ -51,7 +51,11 @@ before_action :require_supervisor_logged_in, only: [:edit, :update]
         #対応するキーワードの食材が登録されていない場合
         @storages = []
       end
-
+      @recipes = []
+      @storages.each do |storage|
+        @recipes << Recipe.find(storage.recipe_id)
+      end
+      @recipes.uniq!
     end
   end
   
