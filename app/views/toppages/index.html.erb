@@ -15,5 +15,51 @@
     <% end %>
   </div>
 <% end %>
+<div class="top-img">
+  <div class="col-md-4">
+    <h3>買い物リスト機能</h3>
+    <p>数日分の食材をまとめて買い出しに行けるよう、
+    買い物リスト作成機能を搭載。
+    マイページから過去に登録した「買い物リスト」
+    を再確認することもできます。
+    </p>
+    <a href="/"><img src="/images/top1.png" ></a>
+  </div>
 
-<p></p>
+  <div class="col-md-4">
+    <h3>豊富なレシピ</h3>
+    <p>大手レシピサイト「楽天レシピ」から掲載しているため、
+      おいしいレシピが盛りだくさんです。
+      現在、厳選した<%= Recipe.last.id %>品のレシピを公開中！</p>
+      
+  </div>
+
+  <div class="col-md-4">
+    <h3>ランダムレシピ機能</h3>
+    <p>毎日の献立を決めるのはとても大変・・・
+      そんなお忙しい方はランダムレシピ機能をお試しください！
+      楽天レシピの中からランダムで５つを紹介します。
+      普段は作らないような新しいレシピとの出会いがあるかも・・・・</p>
+  </div>
+</div>
+
+<div class ="toppage">
+  <div class="col-md-12">
+    <h3>買い物リストが簡単に作成可能。</h3>
+    <p>買い物リストがあれば、お店でのお買い物もスムーズ。もちろん、買い物リストはスマホからも確認できます。</p>
+    <p>また、家族へのおつかいもお願いしやすくなります。</p>
+
+    <a href="/"><img src="/images/shopping_list.png" ></a>
+    <h2>もちろん使用は無料。早速使ってみましょう。</h2>
+  </div>
+</div>
+<div class="col-md-12">
+<div class="top-button">
+    <% if logged_in? %>
+      <%= link_to 'マイページ', user_path(current_user), class: "square_btn" %>
+    <% else %>
+      <%= link_to '新規登録', signup_path ,class: "square_btn" %>
+      <%= link_to 'ログイン', login_path, class: "square_btn" %>
+    <% end %>
+</div>
+</div>
